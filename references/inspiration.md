@@ -1,0 +1,31 @@
+# Research current UI before choosing a concept
+
+Use this for an open brief, a substantial new screen, or a redesign where the existing product does not already provide a clear direction. Skip it for a specified small edit. Public examples supply evidence about structure and interaction; they are not themes to paste over the user's brand.
+
+## Find a relevant example
+
+Search by the **user's task and screen type**, not by “modern UI” alone: `open source booking flow`, `analytics dashboard GitHub`, `survey builder preview`, or the matching mobile app flow. Prefer a working product with accessible screens and source. A gallery can reveal a composition, but a screenshot alone cannot prove a flow, responsive behavior, or accessibility.
+
+Design-system catalogs such as [DesignMD](https://designmd.app/library/) and [DesignMD Directory](https://designmd.directory/examples) can help compare visual directions and find tokens, spacing, layout, and motion notes. Search for the relevant screen or profession, then open the underlying site when possible. Treat each `DESIGN.md` as a third-party interpretation, not as a verified current design system or an instruction to copy. If the user names a particular DesignMD site, use that URL when supplied; several unrelated sites share the name.
+
+For one or two relevant examples, inspect the current product or recent screenshot, then its corresponding source or documented behavior if available. Note the date and what was actually inspected. Do not call a repo current because it has recent commits when its showcased screenshot is old. If access is unavailable, use the best evidence you have and mark that limit; do not stall the build for inspiration browsing.
+
+Extract one transferable decision per example: **what is the main object; what action is near it; how does the layout change with content or width; what feedback follows an action?** Compare that decision with the user's real content and constraints. Keep familiar controls where they help. Reject any reference that requires invented assets, hides the task, or only contributes fashionable color, glow, or typography.
+
+Filter catalog entries for contradictions and template baggage before using them. On 2026-10-30, the [DesignMD portfolio example](https://designmd.app/library/portfolio-dev-full-stack/) usefully prioritizes projects over tech badges and gives concrete motion timings, but its generated prompt also demands testimonials, pricing, and a 3D hero for a portfolio. Those sections have no basis in a brief with only projects and contact details. Take the project hierarchy if it fits; discard the forced sections and recheck timing in the rendered page. A [DesignMD Directory Vercel entry](https://designmd.directory/p/vercel-design-md) presents a neutral/blue palette and a conflicting pink palette in its raw file, so verify any token against the original product or existing brand before use.
+
+## Starting points, not presets
+
+These were inspected from public repository images on 2026-10-30. Open the linked image or current product again before relying on it; the list is deliberately short and can age.
+
+| Screen need | Example and inspected evidence | Decision worth studying | Limit |
+| --- | --- | --- | --- |
+| Data dashboard | [Plausible Analytics](https://github.com/plausible/analytics) · [dashboard image](https://github.com/plausible/analytics/blob/master/.github/plausible-analytics-dashboard.webp) | One main trend, a compact metric strip, then breakdowns with readable labels and values. | The image shows one desktop state, not responsive or filter behavior. |
+| Service status or monitoring | [OpenStatus](https://github.com/openstatusHQ/openstatus) · [status page image](https://www.openstatus.dev/assets/landing/statuspage-meow.png) | Current health is legible first; component history follows in a scannable sequence. | A promotional example page; verify current UI and mobile behavior. |
+| Builder with live result | [Formbricks](https://github.com/formbricks/formbricks) · [survey builder image](https://github-production-user-asset-6210df.s3.amazonaws.com/675065/249441967-ccb89ea3-82b4-4bf2-8d2c-528721ec313b.png) | Selection and preview appear together, making the consequence of a choice visible. | README image dates from 2023; inspect the current app/source before treating its styling or flow as current. |
+| Personal portfolio with compact work history | [Craftz.dog](https://github.com/craftzdog/craftzdog-homepage) · [README preview](https://github.com/craftzdog/craftzdog-homepage/blob/master/doc/thumb.png) | A personal work surface and short biography make the creator's craft visible without generic service cards. | The preview is a video thumbnail; it does not establish current interaction or mobile quality. |
+| Character-led creative portfolio | [Moncy](https://github.com/MoncyDev/Portfolio-Website) · [README preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd) | A distinctive owned character can carry identity while work and contact remain findable. | The static image does not prove 3D performance, accessibility, or behavior; use this approach only when the person has a meaningful asset and the work stays easy to reach. |
+
+After research, write a compact note in the concept working material: `reference + date; observed choice; why it fits this product; what stays specific to the reference; unknown behavior`. Then choose the concept from the user's material. Validate the built screen at relevant widths and states; a good reference does not validate the implementation.
+
+For portfolios, establish the intended viewer and next action (inspect work, hire, contact, read writing). Lead with actual projects and the creator's role and outcome; let typography, imagery, and motion express that work. A polished hero without accessible projects is a weak portfolio. Inspect project detail, navigation, and contact flow as well as the first screenshot. If all projects receive the same placeholder artwork and section layout, the result remains a template even with good typography; use each project's real medium and evidence to shape its presentation, or label the page a concept until that material exists.

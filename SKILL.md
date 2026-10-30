@@ -1,63 +1,52 @@
 ---
 name: no-slop-ui
-description: Create, redesign, or audit human-first UI source for web, mobile, desktop, and native apps. Use to reduce generic AI-generated visual patterns, improve usability and accessibility, or implement a requested style; skip backend-only work.
+description: Design, build, redesign, or audit user-facing web, mobile, desktop, and native UI when visual direction or usability needs judgment. Use for generic, AI-looking, template-like, or "make it feel designed" feedback. Skip backend-only work and fully specified cosmetic edits.
 metadata:
-  short-description: Build and audit human-first UI with less AI slop
+  short-description: Design and audit UI with product-specific direction
 ---
 
 # No-Slop UI
 
-Create interfaces that feel intentional and specific to the product, content, platform, and requested style. Start from what people need to do, then remove visual and copy elements that do not help them. When asked to review existing UI source, inspect the implementation and report concrete evidence; make fixes when requested. When the user asks for concepts or a prompt, deliver that artifact instead of changing code.
+Design from the product outward. An interface should reveal what this product is, help its user complete a task, and hold together across real content, states, and devices. A fashionable style is not a design decision unless it has a reason here.
 
-This skill synthesizes Hallmark's structural variety and anti-pattern awareness with UI UX Pro Max's prioritized UX checks. It is self-contained and does not require either skill or its datasets to be installed.
+## Route the request
 
-## Read the context first
+| Request | Do | Read |
+| --- | --- | --- |
+| New page, app screen, or substantial redesign | Establish product facts and direction, plan structure, implement, then inspect the result. | [Direction](references/direction.md), [composition](references/composition.md), [visual language](references/visual-language.md), [interaction](references/interaction.md), [responsive](references/responsive.md) |
+| Vague UI request or several requested concepts | Determine the missing critical fact or form a few content-led directions; choose one unless the user asked to compare. | [Open briefs and concepts](references/concepts.md), then [direction](references/direction.md) |
+| Existing UI feels generic, messy, or weak; user asks for fixes | Capture the current state, diagnose, fix the highest-impact causes, compare before and after. | [Audit](references/audit.md), then the relevant design references |
+| Read-only audit or review | Report ranked findings with evidence and concrete changes; leave files untouched. | [Audit](references/audit.md), [pattern diagnostics](references/patterns.md) |
+| A specified small edit | Make the edit using the existing system; check the affected area. | Only the reference needed for that edit, if any |
+| Concept, critique, or prompt without implementation | Deliver that artifact; do not modify code. | [Concepts](references/concepts.md), [direction](references/direction.md), or [audit](references/audit.md) as relevant |
 
-- Inspect the existing app, its framework, design system, assets, and relevant screens before changing anything. Reuse established components and conventions.
-- Identify the user, their immediate goal, the information needed to complete it, platform, and any explicit visual constraints. Preserve the user's choices.
-- If a key choice is missing, make a reasonable decision from the product context and proceed. Ask only when the missing information would materially change the result and cannot be inferred.
-- For style-only requests, carry the style into usable hierarchy, spacing, type, color, controls, and imagery; do not stop at describing a moodboard.
+Read references only when that part of the task matters. For an open brief or substantial new direction, use [current UI research](references/inspiration.md) to check relevant public examples. The [pattern diagnostics](references/patterns.md) are a symptom guide, not a mandatory blacklist. Existing brand, user instructions, and platform conventions take priority over aesthetic defaults in this skill.
 
-## Audit existing UI source
+## Invariants
 
-- Trace the visible screen from its route or entry point through the components, styles, and assets that shape it. Review the rendered result at relevant viewport sizes or on-device when available; otherwise base findings on source and state that limitation.
-- Prioritize findings by user impact: accessibility and task-blocking interaction first, then layout and responsive issues, feedback and content clarity, consistency, and visual polish.
-- Look for concrete signs of generic or careless UI: repeated page templates without product-specific purpose, unnecessary eyebrow/top labels, decorative borders and shadows, weak hierarchy, redundant copy, inconsistent spacing/type/color, controls without clear feedback, cramped layouts, and missing interaction or accessibility states.
-- Flag shouty all-caps headings, labels, and buttons when there is no product or platform reason for them. Prefer sentence case for ordinary interface copy. Preserve standard acronyms, brand spellings, and user-specified capitalization; do not lowercase everything indiscriminately.
-- Distinguish a deliberate style choice from a problem. Do not flag a pattern just because it is trendy; explain how it harms this product's clarity, usability, or identity.
-- Report findings with severity, user impact, and precise file/component references. Prioritize a few supported issues over a speculative checklist. If the UI is already coherent, say so and identify only material gaps.
-- An audit is read-only unless the user asks for fixes. When asked to fix findings, address the underlying shared component or design token where appropriate, keep the diff scoped, and recheck affected screens and states.
+1. **Facts stay facts.** Do not invent claims, metrics, testimonials, customers, logos, screenshots, photos, or capabilities. Mark unknowns; use honest placeholders only when the user asked for a mockup.
+2. **A task remains possible.** Preserve navigation, input, validation, feedback, keyboard and touch use, visible focus, contrast, and relevant empty/error/loading states. Visual simplification must not remove meaning or affordances.
+3. **Existing systems matter.** Inspect the route, components, tokens, assets, and surrounding screens before replacing a pattern. Fix a shared cause in its shared component or token when that is the real scope.
+4. **Evidence has a source.** Distinguish what was seen in a render, exercised in an interaction, read in source, or inferred. Never claim a visual or accessibility check that was not performed.
 
-## Design with restraint
+## Working loop for substantial UI work
 
-- Choose page structure based on the user's task and content; do not reuse a default hero/features/cards/CTA rhythm when another composition would fit better. Related pages may share a design system without sharing the same layout.
-- Start with the primary user need. Give the needed content and action clear priority; omit visual flourishes and features that do not help the task.
-- Avoid eyebrow or top labels by default. Add one only when it gives useful context or hierarchy that the main heading cannot provide.
-- Avoid borders that merely outline every card, section, or screen edge. Separate content with layout, whitespace, or restrained surface contrast; keep borders where they clarify control boundaries, grouping, or accessibility.
-- Use shadows sparingly, only when elevation communicates a real layer or interaction. Prefer flat surfaces when depth adds no useful information.
-- Keep descriptions and helper copy only when they answer a real question, reduce uncertainty, or help a user act. Remove repeated headings, filler descriptions, and explanations of what is already obvious.
-- Use a consistent spacing scale and apply it consistently to equivalent relationships. Reuse the project's tokens where available; do not tune each gap independently.
-- Prefer sentence case for headings, labels, and controls. Avoid decorative ALL CAPS used only to create emphasis or an artificial hierarchy. Preserve acronyms, brand names, and explicit style requests.
-- Choose type and color for readable hierarchy. Use real product content and context-appropriate imagery. Do not invent logos, claims, metrics, testimonials, or product capabilities. If assets are missing, use a deliberate typographic or geometric treatment rather than fake photography.
+### 1. Establish the material
 
-## Fit the platform and interaction
+Identify user, task, content, primary action, platform, existing brand, real assets, constraints, and missing facts. For an existing UI, capture the current screen and its relevant states when a renderer is available. Ask only when an unknown would change the core direction and cannot be inferred. Use the [direction worksheet](references/direction.md) for a new screen or redesign; use [open-brief concepts](references/concepts.md) when the request is vague.
 
-- Web: respect the app's routing and established layout. Preserve the same hierarchy and visual intent across viewport changes; adapt only what is needed to keep content and actions usable. Avoid unnecessary breakpoint-specific rearrangement, fixed-width overflow, or controls that depend on hover alone.
-- Mobile and native: follow the platform patterns and conventions already used by the project. Respect touch targets, safe areas, navigation/back behavior, and system conventions; do not make a native screen look like a shrunk desktop page.
-- Make controls communicate purpose and state. Provide useful loading, empty, error, success, selected, or disabled feedback when the flow needs it. Use motion to clarify cause and response, and respect reduced-motion settings where supported.
-- Preserve semantic structure, keyboard use, visible focus, accessible names, and contrast appropriate to the text and platform. Do not rely on color alone to communicate state.
-- When the platform is unspecified, infer it from the repository. If there is no existing app, choose the simplest implementation compatible with the user's request and available environment.
+### 2. Choose a direction and structure
 
-## Use available tools and agents
+Name one visual and structural idea that follows from the material. Identify the screen's main subject and primary action; keep necessary secondary actions visibly secondary. Sketch the information hierarchy before choosing color or decoration. Consider more than one composition internally when the first is the familiar category template; deliver multiple directions only when requested. Use [composition](references/composition.md) to match the content, not to pick a template at random.
 
-- Use the tools Codex actually exposes for the task: repository search for source tracing, and browser, simulator, screenshot, or accessibility tools for rendered behavior when available. Do not assume a tool exists or claim a check was run without using it.
-- For substantial audits or multi-screen work, split independent reviews across available agents when the agent facility is available: user flow and content clarity; visual hierarchy and responsive behavior; accessibility and interaction states; platform conventions. Keep each assignment narrow and evidence-based.
-- Delegate read-only reviews by default. If agents implement fixes, assign non-overlapping files or components; coordinate shared files through one owner. Reconcile their findings against the source and rendered UI before reporting.
-- Keep small UI changes on one agent. Parallel review is optional and should save time or improve coverage, not add ceremony.
-- Skill instructions can guide use of available tools and agents; they cannot install tools or grant permissions that Codex has not provided.
-## Finish
+### 3. Build the system and interaction
 
-- Review the changed screen at relevant viewport sizes or on the target platform when practical. Fix overflow, awkward wrapping, inconsistent spacing, and broken interactions without changing the intended visual hierarchy unnecessarily.
-- Before returning work, check that the primary task is clear, hierarchy is coherent, style fits the product, and key interactions are usable. Do not add a rigid score or stamp that does not help the user.
-- Keep changes scoped to the request and report what was implemented, reviewed, and any important limitation.
+Apply [visual language](references/visual-language.md) to typography, color, spacing, imagery, copy, and motion. Reuse the project's components and tokens. Implement the states the flow actually needs using [interaction](references/interaction.md), and adapt the composition across the supported range using [responsive](references/responsive.md). Work from the main task outward; do not add sections or decoration merely to fill space.
 
+### 4. Inspect, correct, deliver
+
+Run relevant project checks. Inspect the rendered result at its main viewport, a narrow width, a middle width near a layout change, and a wide width when tools allow and the scope is substantial; use the [responsive checks](references/responsive.md) to select the relevant points. Exercise the primary action and a relevant non-happy state. At each pass, fix the most consequential issue first: blocked task, misleading content, weak hierarchy, broken layout, then polish. Stop when remaining differences are taste preferences rather than supported problems. Use the [audit protocol](references/audit.md) for a review or before/after comparison.
+
+When applicable, run `py -3 scripts/check_ui.py <path>` (or `python3`) as a **source hint pass**. It catches a few mechanical risks and cannot judge whether a design looks generic. Confirm every result in context; the tool does not replace rendered review.
+
+Report what changed or what was found, what was actually verified, and any material limitation. Keep audit findings tied to a location, observation, user impact, and smallest useful correction. Do not assign an arbitrary quality score.

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minh An — nghiên cứu chuyển động</title>
+  <style>
+    :root { color-scheme: light; --paper: #f2f0e9; --ink: #17231f; --muted: #4b5a54; --line: #a7afa6; --accent: #d64734; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.5 system-ui, sans-serif; }
+    a { color: inherit; text-underline-offset: .25em; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .shell { width: min(100% - 48px, 1280px); margin-inline: auto; }
+    .note { background: var(--ink); color: #fff; padding: 8px 24px; text-align: center; font-size: .85rem; }
+    .top { min-height: 80px; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-bottom: 1px solid var(--line); }
+    .mark { font-weight: 800; letter-spacing: -.06em; font-size: 1.35rem; text-decoration: none; }
+    nav { display: flex; gap: clamp(16px, 4vw, 48px); }
+    nav a { text-decoration: none; font-weight: 650; }
+    nav a:hover, nav a:focus-visible { color: var(--accent); }
+    .intro { padding: clamp(64px, 10vw, 144px) 0 72px; }
+    h1 { max-width: 12ch; margin: 0; font-size: clamp(3.4rem, 8.5vw, 9rem); line-height: .91; letter-spacing: -.085em; }
+    .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 18px 0; border-top: 1px solid var(--ink); }
+    .section-head h2 { margin: 0; font-size: clamp(1.3rem, 2vw, 1.8rem); letter-spacing: -.04em; }
+    .section-head span { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .project { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(240px, .7fr); gap: clamp(24px, 4vw, 64px); padding: 28px 0 56px; border-bottom: 1px solid var(--line); }
+    .art { min-height: clamp(300px, 42vw, 520px); overflow: hidden; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .art::before { content: ""; position: absolute; inset: 8%; border: 1px solid currentColor; opacity: .3; }
+    .art span { display: block; font-size: clamp(6rem, 20vw, 18rem); font-weight: 850; line-height: 1; letter-spacing: -.13em; transition: transform 240ms ease-out; }
+    @media (hover: hover) and (pointer: fine) { .project:hover .art span { transform: translateY(-8px); } }
+    .art-one { background: #e6e1d2; color: #c64532; }
+    .art-two { background: #bec5bb; color: #17392f; }
+    .art-three { background: #203a33; color: #eae7db; }
+    .art-two span { transform: rotate(-90deg); }
+    @media (hover: hover) and (pointer: fine) { .project:hover .art-two span { transform: rotate(-90deg) translateY(-8px); } }
+    .project-info { display: flex; flex-direction: column; align-items: flex-start; padding-top: 8px; }
+    .number { color: var(--accent); font-weight: 750; }
+    .project-info h3 { margin: auto 0 8px; font-size: clamp(2.6rem, 5vw, 5.8rem); line-height: 1; letter-spacing: -.07em; }
+    .project-info p { max-width: 34ch; margin: 0 0 28px; color: var(--muted); font-size: 1.08rem; }
+    details { width: 100%; }
+    summary { width: fit-content; min-height: 44px; cursor: pointer; font-weight: 750; transition: color 160ms ease-out; }
+    summary:hover { color: var(--accent); }
+    details[open] summary { color: var(--accent); }
+    .detail { max-width: 42ch; padding: 14px 0 0; border-top: 1px solid var(--line); }
+    .detail p { margin: 0 0 10px; }
+    .contact { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding: clamp(72px, 10vw, 144px) 0; }
+    .contact h2 { margin: 0; font-size: clamp(3.5rem, 8vw, 8rem); line-height: .95; letter-spacing: -.08em; }
+    .contact a { display: inline-flex; align-items: center; min-height: 52px; padding: 10px 18px; border: 1px solid var(--ink); text-decoration: none; font-weight: 750; transition: background 180ms ease-out, color 180ms ease-out; }
+    .contact a:hover { background: var(--ink); color: #fff; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 32px; border-top: 1px solid var(--ink); color: var(--muted); font-size: .9rem; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 32px, 1280px); }
+      .intro { padding: 72px 0 56px; }
+      .project { grid-template-columns: 1fr; gap: 18px; padding-bottom: 44px; }
+      .art { min-height: 300px; }
+      .project-info h3 { margin: 20px 0 8px; }
+      .contact { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .art span, summary, .contact a { transition: none; }
+      .project:hover .art span { transform: none; }
+      .project:hover .art-two span { transform: rotate(-90deg); }
+      .art-two span { transform: rotate(-90deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="note">Bản thử concept · tên và dự án giả lập · không phải hồ sơ thật</div>
+  <header class="shell top">
+    <a class="mark" href="#dau">Minh An /</a>
+    <nav aria-label="Điều hướng chính"><a href="#du-an">Dự án</a><a href="#lien-he">Liên hệ</a></nav>
+  </header>
+  <main class="shell" id="dau">
+    <section class="intro" aria-labelledby="title">
+      <h1 id="title">Chữ, hình, nhịp.</h1>
+    </section>
+    <section id="du-an" aria-labelledby="projects-title">
+      <div class="section-head"><h2 id="projects-title">Dự án chọn lọc</h2><span>01 — 03</span></div>
+      <article class="project"><div class="art art-one" aria-hidden="true"><span>N</span></div><div class="project-info"><span class="number">01</span><h3>Nếp</h3><p>Chữ co giãn theo nhịp đọc.</p><details><summary>Xem nghiên cứu</summary><div class="detail"><p>Chữ và khoảng trắng chuyển vị ngắn, giữ nội dung dễ đọc.</p></div></details></div></article>
+      <article class="project"><div class="art art-two" aria-hidden="true"><span>II</span></div><div class="project-info"><span class="number">02</span><h3>Dải</h3><p>Hình đổi hướng để dẫn mắt.</p><details><summary>Xem nghiên cứu</summary><div class="detail"><p>Hai lớp hình chuyển động theo một trục để làm rõ thứ tự.</p></div></details></div></article>
+      <article class="project"><div class="art art-three" aria-hidden="true"><span>·</span></div><div class="project-info"><span class="number">03</span><h3>Khoảng</h3><p>Khoảng dừng trước điểm nhấn.</p><details><summary>Xem nghiên cứu</summary><div class="detail"><p>Ít chuyển động hơn để điểm nhấn dễ nhận ra.</p></div></details></div></article>
+    </section>
+    <section class="contact" id="lien-he" aria-labelledby="contact-title"><h2 id="contact-title">Có ý tưởng cần chuyển động?</h2><a href="mailto:hello@example.test">Viết email thử nghiệm ↗</a></section>
+  </main>
+  <footer class="shell"><span>Minh An · concept giả lập</span><span>Không gửi email thật</span></footer>
+</body>
+</html>
